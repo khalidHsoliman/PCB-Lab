@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Intro.unity
+    guid: fb8954d5749c6da4f8551e0915ce9194
+  - enabled: 1
+    path: Assets/Scenes/GlossyCut.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/PhotoEngravingCut.unity
+    guid: e7c48de173cddfc4d8229b6ecebde76a
+  - enabled: 1
+    path: Assets/Scenes/SilkscreenCut.unity
+    guid: f253cce1aabc95746a6409fc622dabc5
+  - enabled: 1
+    path: Assets/Scenes/Soldaring.unity
+    guid: 2d57ba06be97ed24e876e821243c2385
+  m_configObjects: {}
