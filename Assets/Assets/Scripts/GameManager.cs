@@ -10,7 +10,11 @@ public class GameManager : MonoBehaviour {
 
     public GameObject ErrorButton; 
     public GameObject UIGamePaused;
-    public GameObject TimerObject; 
+    public GameObject TimerObject;
+
+    public Material newPcbMaterial;
+    public Material newPcbeMaterial;
+
 
     public Text ErrorText; 
      
@@ -88,6 +92,10 @@ public class GameManager : MonoBehaviour {
         _timer.isRunning = true; 
     }
 
+    public bool TimerFinished()
+    {
+        return _timer.finished;
+    }
 
     // Error 
     
@@ -102,6 +110,11 @@ public class GameManager : MonoBehaviour {
         StartCoroutine("ShowButton"); 
     }
 
+    public void DamagePCB()
+    {
+        // implementation
+    }
+
     public void ResetObject(GameObject gameObject)
     {
         if (gameObject.GetComponent<Interaction>()) 
@@ -109,8 +122,15 @@ public class GameManager : MonoBehaviour {
 
         if (gameObject.tag == "PCB")
         {
-            gameObject.transform.GetChild(1).GetComponent<Renderer>().material.SetFloat("_Metallic", 1.0f);
+            gameObject.transform.GetChild(1).GetComponent<Renderer>().material = newPcbMaterial;
         }
+
+        if (gameObject.tag == "PCBE")
+        {
+            gameObject.GetComponent<Renderer>().material = newPcbeMaterial;
+        }
+
+
     }
     // Pause menu UI 
 
@@ -119,7 +139,7 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-        public void Exit()
+    public void Exit()
         {
             Application.Quit();
         }
@@ -156,7 +176,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator ShowMessage()
     {
         ErrorText.enabled = true;
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(3.0f);
         ErrorText.enabled = false; 
     }
 
@@ -174,6 +194,7 @@ public class GameManager : MonoBehaviour {
         {
             ErrorButton.SetActive(false);
             ShowErrorMessage("PCB was damaged, Restart the procedure");
+            DamagePCB();
         }
     }
 }

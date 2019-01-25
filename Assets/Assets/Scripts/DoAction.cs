@@ -97,12 +97,10 @@ public class DoAction : MonoBehaviour {
             StartSpray();
 
         else if (gameObject.tag == "PCBE")
-        {
-            oldObjectPos = gameObject.transform.position;
-            oldObjectRot = gameObject.transform.rotation; 
-
             PlacePCB(gameObject);
-        }
+
+        else if (gameObject.tag == "Shablona")
+            PlaceShablona(gameObject);
     }
 
     // functions to be called inside the doAction to explicitly define that action or called by UI 
@@ -120,7 +118,8 @@ public class DoAction : MonoBehaviour {
   
     private void ChangeMaterial()
     {
-        gameObject.GetComponent<Renderer>().material = newMaterial;
+        if(newMaterial)
+            gameObject.GetComponent<Renderer>().material = newMaterial;
     }
 
     private void PutPaper(GameObject paper)
@@ -231,7 +230,6 @@ public class DoAction : MonoBehaviour {
     }
 
     private void PlacePCB(GameObject PCB)
-
     {
         PCB.GetComponent<Interaction>().enabled = false;
 
@@ -242,17 +240,27 @@ public class DoAction : MonoBehaviour {
 
     }
 
+    private void PlaceShablona(GameObject Shablona)
+    {
+        Shablona.GetComponent<Interaction>().enabled = false;
+
+        Shablona.transform.position = new Vector3(-16.27f, 2.78f, 16.31f);
+
+        PCBOn = true; 
+    }
     public void turnLightOn()
     {
         light = gameObject.GetComponentInChildren<Light>();
         if(light)
-            light.intensity = 1; 
+            light.intensity = 1;
 
-        //if(PCBOn)
-            // something
+        if (PCBOn)
+        {
+            GameManager.gm.TimerRun(10.0f);
+        }
 
-        //else 
-            //something
+        else
+            GameManager.gm.ShowErrorMessage("You should put the PCB first!");
     }
 
     public void turnLightOFF()

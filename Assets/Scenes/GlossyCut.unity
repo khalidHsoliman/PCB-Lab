@@ -390,8 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anotherObjectsInteraction:
   - {fileID: 455981575}
-  highlightedObject: {fileID: 557997971}
-  highlightingColor: {r: 0.9607843, g: 0.9019608, b: 0.4117647, a: 1}
   waitTime: 0.5
   offset: 0.5
   isClicked: 0
@@ -1256,8 +1254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anotherObjectsInteraction:
   - {fileID: 1489421266}
-  highlightedObject: {fileID: 1778130890}
-  highlightingColor: {r: 0.9607843, g: 0.9019608, b: 0.4117647, a: 1}
   waitTime: 0.5
   offset: 0.5
   isClicked: 0
@@ -2457,6 +2453,8 @@ MonoBehaviour:
   ErrorButton: {fileID: 18959304}
   UIGamePaused: {fileID: 411152455}
   TimerObject: {fileID: 2107950492}
+  newPcbMaterial: {fileID: 0}
+  newPcbeMaterial: {fileID: 0}
   ErrorText: {fileID: 1397818436}
   FPSController: {fileID: 295720255}
   enableDrill: 0
@@ -3864,8 +3862,6 @@ MonoBehaviour:
   anotherObjectsInteraction:
   - {fileID: 2138248489}
   - {fileID: 1603170663}
-  highlightedObject: {fileID: 0}
-  highlightingColor: {r: 0, g: 0, b: 0, a: 0}
   waitTime: 0.05
   offset: 0.5
   isClicked: 0
@@ -3886,11 +3882,15 @@ MonoBehaviour:
   newParent: {fileID: 0}
   Water: {fileID: 1148376792}
   moveCameraTo: {fileID: 0}
+  MoveSprayTo: {fileID: 0}
+  Spray: {fileID: 0}
   FirstPersonController: {fileID: 0}
   newMaterial: {fileID: 0}
   Width: {fileID: 0}
   Height: {fileID: 0}
   PCB: {fileID: 0}
+  SpraySFX: {fileID: 0}
+  ShakeSFX: {fileID: 0}
 --- !u!1 &646613022
 GameObject:
   m_ObjectHideFlags: 0
@@ -6732,8 +6732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anotherObjectsInteraction:
   - {fileID: 1893956037}
-  highlightedObject: {fileID: 0}
-  highlightingColor: {r: 0, g: 0, b: 0, a: 0}
   waitTime: 0.05
   offset: 0.5
   isClicked: 0
@@ -6777,11 +6775,15 @@ MonoBehaviour:
   newParent: {fileID: 0}
   Water: {fileID: 0}
   moveCameraTo: {fileID: 1799216863}
+  MoveSprayTo: {fileID: 0}
+  Spray: {fileID: 0}
   FirstPersonController: {fileID: 295720255}
   newMaterial: {fileID: 0}
   Width: {fileID: 0}
   Height: {fileID: 0}
   PCB: {fileID: 0}
+  SpraySFX: {fileID: 0}
+  ShakeSFX: {fileID: 0}
 --- !u!82 &1369606883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7633,8 +7635,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anotherObjectsInteraction:
   - {fileID: 179743054}
-  highlightedObject: {fileID: 1778130890}
-  highlightingColor: {r: 0.9607843, g: 0.9019608, b: 0.4117647, a: 1}
   waitTime: 0.5
   offset: 0.5
   isClicked: 0
@@ -9235,8 +9235,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anotherObjectsInteraction: []
-  highlightedObject: {fileID: 0}
-  highlightingColor: {r: 0, g: 0, b: 0, a: 0}
   waitTime: 0.05
   offset: 0.5
   isClicked: 0
@@ -10288,8 +10286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anotherObjectsInteraction:
   - {fileID: 1603170663}
-  highlightedObject: {fileID: 0}
-  highlightingColor: {r: 0, g: 0, b: 0, a: 0}
   waitTime: 0.05
   offset: 0.5
   isClicked: 0
