@@ -129,8 +129,6 @@ public class GameManager : MonoBehaviour {
         {
             gameObject.GetComponent<Renderer>().material = newPcbeMaterial;
         }
-
-
     }
     // Pause menu UI 
 

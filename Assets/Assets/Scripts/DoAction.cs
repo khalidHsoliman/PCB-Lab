@@ -11,9 +11,16 @@ public class DoAction : MonoBehaviour {
     public GameObject DetailsPanel; 
     public GameObject newParent;
     public GameObject Water;
-    public GameObject moveCameraTo;
+    public GameObject MoveCameraTo;
     public GameObject MoveSprayTo;
+    public GameObject MoveShablonaTo; 
     public GameObject Spray;
+    public GameObject LightMaterial;
+    public GameObject Tapes;
+    public GameObject MaterialAfterWash;
+    public GameObject Layout;
+    public GameObject Shablona; 
+
 
     public FirstPersonController FirstPersonController; 
 
@@ -24,6 +31,8 @@ public class DoAction : MonoBehaviour {
 
     public AudioClip SpraySFX;
     public AudioClip ShakeSFX;
+    public AudioClip DuctSFX;
+    public AudioClip WaterSFX; 
 
     private AudioSource audioSource;
 
@@ -42,10 +51,11 @@ public class DoAction : MonoBehaviour {
     private float new_width  = 100.0f;
     private float new_height = 100.0f;
 
+    private bool isRotating = false;
     private bool  paperOn = false; 
-    private bool  isRotating = false;
-    private bool  acidOn = false;
-    private bool  PCBOn = false; 
+    private bool  acidOn  = false;
+    private bool  PCBOn   = false;
+    private bool  ductOn  = false; 
 
     // private Material oldMaterial;
 
@@ -64,6 +74,18 @@ public class DoAction : MonoBehaviour {
 
         if (DrillPanel)
             DrillPanel.SetActive(false);
+
+        if (Tapes)
+            Tapes.SetActive(false);
+
+        if (LightMaterial)
+            LightMaterial.SetActive(false);
+
+        if (MaterialAfterWash)
+            MaterialAfterWash.SetActive(false);
+
+        if (Layout)
+            Layout.SetActive(false); 
 
         audioSource = this.gameObject.GetComponent<AudioSource>();
     }
@@ -101,6 +123,15 @@ public class DoAction : MonoBehaviour {
 
         else if (gameObject.tag == "Shablona")
             PlaceShablona(gameObject);
+
+        else if (gameObject.tag == "Duct")
+            DuctShablona();
+
+        else if (gameObject.tag == "Bucket")
+            MaterialOnShablona();
+
+        else if (gameObject.tag == "Ink")
+            PrintPCB();
     }
 
     // functions to be called inside the doAction to explicitly define that action or called by UI 
@@ -174,7 +205,7 @@ public class DoAction : MonoBehaviour {
 
             PCB.transform.position = newPos;
 
-            GameManager.gm.TimerRun(10.0f);
+            GameManager.gm.TimerRun(5.0f);
 
         }
 
@@ -192,8 +223,8 @@ public class DoAction : MonoBehaviour {
 
         FirstPersonController.GetComponent<FirstPersonController>().enabled = false;
 
-        Camera.main.transform.position = moveCameraTo.transform.position;
-        Camera.main.transform.rotation = moveCameraTo.transform.rotation;
+        Camera.main.transform.position = MoveCameraTo.transform.position;
+        Camera.main.transform.rotation = MoveCameraTo.transform.rotation;
 
         StartCoroutine("ZoomIn");
 
@@ -244,10 +275,55 @@ public class DoAction : MonoBehaviour {
     {
         Shablona.GetComponent<Interaction>().enabled = false;
 
-        Shablona.transform.position = new Vector3(-16.27f, 2.78f, 16.31f);
+        if (MoveShablonaTo)
+        {
+            Shablona.transform.position = MoveShablonaTo.transform.position;
+            Shablona.transform.rotation = MoveShablonaTo.transform.rotation;
+        }
+            //new Vector3(-16.27f, 2.78f, 16.31f);
+        
+        if(audioSource)
+        {
+            if (WaterSFX)
+            {
+                audioSource.PlayOneShot(WaterSFX);
+
+                MaterialAfterWash.SetActive(true);
+
+                GameManager.gm.TimerRun(5.0f); 
+            }
+            
+        }
 
         PCBOn = true; 
     }
+
+    private void DuctShablona()
+    {
+        Tapes.SetActive(true);
+
+        StartCoroutine("Duct");
+
+        ductOn = true;
+    }
+
+    private void MaterialOnShablona()
+    {
+        if (ductOn)
+            LightMaterial.SetActive(true);
+
+        else
+            GameManager.gm.ShowErrorMessage("You must put the duct tape first!"); 
+    }
+
+    private void PrintPCB()
+    {
+        Layout.SetActive(true);
+
+        if (Shablona)
+            Shablona.GetComponent<Interaction>().enabled = true; 
+    }
+
     public void turnLightOn()
     {
         light = gameObject.GetComponentInChildren<Light>();
@@ -256,7 +332,7 @@ public class DoAction : MonoBehaviour {
 
         if (PCBOn)
         {
-            GameManager.gm.TimerRun(10.0f);
+            GameManager.gm.TimerRun(8.0f);
         }
 
         else
@@ -364,6 +440,24 @@ public class DoAction : MonoBehaviour {
         Spray.transform.position = oldObjectPos;
 
         Spray.GetComponent<Interaction>().enabled = true;
+
+    }
+
+    IEnumerator Duct()
+    {
+        for (int i = 0; i < Tapes.gameObject.transform.childCount ; i++)
+        {
+            GameObject tape = Tapes.gameObject.transform.GetChild(i).gameObject;
+
+            if (audioSource)
+                audioSource.PlayOneShot(DuctSFX);
+
+            yield return new WaitForSeconds(0.75f);
+
+            tape.SetActive(true);
+
+            yield return new WaitForSeconds(0.75f); 
+        }
 
     }
 }

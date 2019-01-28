@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 114728822178929854}
   m_Layer: 0
   m_Name: CUTTER
-  m_TagString: Untagged
+  m_TagString: Cutter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -806,7 +806,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 80
-    m_FontStyle: 0
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 80
@@ -816,7 +816,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: w
+  m_Text: 
 --- !u!114 &114728822178929854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -828,9 +828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3285d6ac8d3eb5f448b594247be22f4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anotherObjectsInteraction: []
-  highlightedObject: {fileID: 0}
-  highlightingColor: {r: 0.9622642, g: 0.90171856, b: 0.41304737, a: 1}
+  anotherObjectsInteraction:
+  - {fileID: 0}
   waitTime: 0.5
   offset: 0.5
   isClicked: 0

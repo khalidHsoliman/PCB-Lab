@@ -2453,8 +2453,8 @@ MonoBehaviour:
   ErrorButton: {fileID: 18959304}
   UIGamePaused: {fileID: 411152455}
   TimerObject: {fileID: 2107950492}
-  newPcbMaterial: {fileID: 0}
-  newPcbeMaterial: {fileID: 0}
+  newPcbMaterial: {fileID: 2100000, guid: 290807f46bc856d4897a988ec3293b1d, type: 2}
+  newPcbeMaterial: {fileID: 2100000, guid: c32303b9465abd14999a850b8467db85, type: 2}
   ErrorText: {fileID: 1397818436}
   FPSController: {fileID: 295720255}
   enableDrill: 0
@@ -3884,6 +3884,8 @@ MonoBehaviour:
   moveCameraTo: {fileID: 0}
   MoveSprayTo: {fileID: 0}
   Spray: {fileID: 0}
+  LightMaterial: {fileID: 0}
+  Tapes: {fileID: 0}
   FirstPersonController: {fileID: 0}
   newMaterial: {fileID: 0}
   Width: {fileID: 0}
@@ -3891,6 +3893,7 @@ MonoBehaviour:
   PCB: {fileID: 0}
   SpraySFX: {fileID: 0}
   ShakeSFX: {fileID: 0}
+  DuctSFX: {fileID: 0}
 --- !u!1 &646613022
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,6 +6780,8 @@ MonoBehaviour:
   moveCameraTo: {fileID: 1799216863}
   MoveSprayTo: {fileID: 0}
   Spray: {fileID: 0}
+  LightMaterial: {fileID: 0}
+  Tapes: {fileID: 0}
   FirstPersonController: {fileID: 295720255}
   newMaterial: {fileID: 0}
   Width: {fileID: 0}
@@ -6784,6 +6789,7 @@ MonoBehaviour:
   PCB: {fileID: 0}
   SpraySFX: {fileID: 0}
   ShakeSFX: {fileID: 0}
+  DuctSFX: {fileID: 0}
 --- !u!82 &1369606883
 AudioSource:
   m_ObjectHideFlags: 0

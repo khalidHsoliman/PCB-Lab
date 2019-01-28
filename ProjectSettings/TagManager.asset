@@ -16,6 +16,10 @@ TagManager:
   - Drill
   - Spray
   - PCBE
+  - Shablona
+  - Bucket
+  - Duct
+  - Ink
   layers:
   - Default
   - TransparentFX
