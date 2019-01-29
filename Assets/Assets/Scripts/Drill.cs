@@ -13,7 +13,6 @@ public class Drill : MonoBehaviour {
     private float volHighRange = 1.0f;
 
     private GameObject effect;
-    private GameObject hole;
     private Vector3 instPos; 
 
     // Use this for initialization
@@ -54,6 +53,6 @@ public class Drill : MonoBehaviour {
     {
         yield return new WaitForSeconds(1.5f);
 
-        hole = Instantiate(blank, instPos, Quaternion.identity) as GameObject;
+        Instantiate(blank, instPos, Quaternion.identity);
     }
 }

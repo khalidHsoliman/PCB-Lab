@@ -36,7 +36,7 @@ public class DoAction : MonoBehaviour {
 
     private AudioSource audioSource;
 
-    private Light light; 
+    private Light myLight; 
 
     private Vector3[] sprayPos;
     private Vector3 newPos;
@@ -326,9 +326,9 @@ public class DoAction : MonoBehaviour {
 
     public void turnLightOn()
     {
-        light = gameObject.GetComponentInChildren<Light>();
-        if(light)
-            light.intensity = 1;
+        myLight = gameObject.GetComponentInChildren<Light>();
+        if(myLight)
+            myLight.intensity = 1;
 
         if (PCBOn)
         {
@@ -341,9 +341,9 @@ public class DoAction : MonoBehaviour {
 
     public void turnLightOFF()
     {
-        light = gameObject.GetComponentInChildren<Light>();
-        if(light)
-            light.intensity = 0;
+        myLight = gameObject.GetComponentInChildren<Light>();
+        if(myLight)
+            myLight.intensity = 0;
     }
 
     // helper functions 

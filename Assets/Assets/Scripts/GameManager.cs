@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour {
      
     public FirstPersonController FPSController;
 
-    public bool enableDrill = false; 
+    public bool enableDrill  = false;
+    public bool enableSolder = false; 
 
     private GameObject _player;
     private Timer _timer;
@@ -42,25 +43,28 @@ public class GameManager : MonoBehaviour {
         {
             if (Time.timeScale > 0f)
             {
-                UIGamePaused.SetActive(true); 
+                UIGamePaused.SetActive(true);
                 Time.timeScale = 0f;
                 FPSController.GetComponent<FirstPersonController>().enabled = false;
             }
             else
             {
                 FPSController.GetComponent<FirstPersonController>().enabled = true;
-                Time.timeScale = 1f; 
-                UIGamePaused.SetActive(false); 
+                Time.timeScale = 1f;
+                UIGamePaused.SetActive(false);
             }
         }
 
-        if(_timer.finished)
+        if (_timer)
         {
-            ShowErrorMessage("This is taking too much time!");
+            if (_timer.finished)
+            {
+                ShowErrorMessage("This is taking too much time!");
 
-            ShowErrorButton();
+                ShowErrorButton();
 
-            TimerReset();
+                TimerReset();
+            }
         }
     }
 
@@ -147,7 +151,8 @@ public class GameManager : MonoBehaviour {
 
     void setupDefaults()
     {
-        FPSController.GetComponent<FirstPersonController>().enabled = true;
+        if(FPSController)
+            FPSController.GetComponent<FirstPersonController>().enabled = true;
 
         if (TimerObject)
         {

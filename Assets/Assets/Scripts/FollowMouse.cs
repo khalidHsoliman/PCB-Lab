@@ -4,33 +4,30 @@ using UnityEngine;
 
 public class FollowMouse : MonoBehaviour {
 
-    private bool isClicked = false;
+    public Texture2D cursorTexture;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
 
-    private Vector3    oldPos;
-    private Quaternion oldRot;
-    
-	// Use this for initialization
-	void Start () {
-        oldPos = transform.position;
-        oldRot = transform.rotation; 
-	}
+    private bool isClicked = false;
+   
 	
 	// Update is called once per frame
 	void Update () {
-		if(isClicked)
+        if (isClicked)
         {
-            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         }
-
         else
         {
-            transform.position = oldPos;
-            transform.rotation = oldRot; 
+            Cursor.SetCursor(null, Vector2.zero, cursorMode);
         }
-	}
+    }
 
     private void OnMouseUp()
     {
-        isClicked = !isClicked;     
+        isClicked = !isClicked;
+
+        GameManager.gm.enableSolder = !GameManager.gm.enableSolder;
+
     }
 }

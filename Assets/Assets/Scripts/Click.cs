@@ -16,6 +16,6 @@ public class Click : MonoBehaviour {
         else
             DoAction.GetComponent<DoAction>().turnLightOFF();
 
-        clicked = !clicked; 
+        clicked = !clicked;     
     }
 }
