@@ -34,7 +34,7 @@ public class Drill : MonoBehaviour {
                     {
                         instPos = hit.point;
 
-                        instPos = new Vector3(instPos.x, instPos.y + 0.005f, instPos.z);
+                        instPos = new Vector3(instPos.x + 0.005f, instPos.y + 0.005f, instPos.z);
 
                         float vol = Random.Range(volLowRange, volHighRange);
                         AudioSource.PlayOneShot(drillSFX, vol);

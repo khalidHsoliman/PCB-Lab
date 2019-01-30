@@ -19,12 +19,15 @@ public class DoAction : MonoBehaviour {
     public GameObject Tapes;
     public GameObject MaterialAfterWash;
     public GameObject Layout;
-    public GameObject Shablona; 
+    public GameObject Shablona;
+    public GameObject SmokeEffect; 
 
 
     public FirstPersonController FirstPersonController; 
 
     public Material newMaterial;
+    public Texture2D cursorTexture;
+
     public Text Width;
     public Text Height;
     public RawImage PCB;
@@ -43,8 +46,10 @@ public class DoAction : MonoBehaviour {
     private Vector3 oldObjectPos;
     private Vector3 oldCameraPos;
     private Quaternion[] sprayRot;
+    private Quaternion newRot;
     private Quaternion oldCameraRot;
     private Quaternion oldObjectRot; 
+    
     
     private float width  = 1.0f;
     private float height = 1.0f;
@@ -155,7 +160,8 @@ public class DoAction : MonoBehaviour {
 
     private void PutPaper(GameObject paper)
     {
-        newPos = new Vector3(0, 0.5f, 0);
+        newPos = new Vector3(0, 1.0f, 0);
+        newRot = Quaternion.Euler(90.0f, 0, 0);
 
         paper.GetComponent<Interaction>().enabled = false; 
 
@@ -163,6 +169,7 @@ public class DoAction : MonoBehaviour {
         {
             paper.transform.SetParent(newParent.transform);
             paper.transform.localPosition = newPos;
+            paper.transform.localRotation = newRot;
 
             paperOn = true; 
         }
@@ -174,12 +181,12 @@ public class DoAction : MonoBehaviour {
         {
             iron.GetComponent<Interaction>().enabled = false;
 
-            iron.transform.position = new Vector3(-5.0f, 2.7f, -2.0f);
+            iron.transform.position = new Vector3(-9.0f, 2.7f, -2.0f);
 
             isRotating = true;
             StartCoroutine("Rotate", iron);
-
-            GameManager.gm.TimerRun(10.0f);
+            StartCoroutine("Smoke"); 
+            GameManager.gm.TimerRun(10.0f, iron);
         }
 
         else
@@ -199,13 +206,13 @@ public class DoAction : MonoBehaviour {
     {
         if (acidOn)
         {
-            newPos = new Vector3(-11.5f, 2.342f, -2.5f);
+            newPos = new Vector3(PCB.transform.position.x, PCB.transform.position.y - 0.5f, PCB.transform.position.z + 2.0f);
 
             PCB.GetComponent<Interaction>().enabled = false;
 
             PCB.transform.position = newPos;
 
-            GameManager.gm.TimerRun(5.0f);
+            GameManager.gm.TimerRun(5.0f, PCB);
 
         }
 
@@ -228,7 +235,10 @@ public class DoAction : MonoBehaviour {
 
         StartCoroutine("ZoomIn");
 
-        GameManager.gm.enableDrill = true; 
+        GameManager.gm.enableDrill = true;
+
+        Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
+
 
         if (DrillPanel)
             DrillPanel.SetActive(true);
@@ -246,7 +256,10 @@ public class DoAction : MonoBehaviour {
 
         StartCoroutine("ZoomOut");
 
-        GameManager.gm.enableDrill = true;
+        GameManager.gm.enableDrill = false;
+
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
 
         if (DrillPanel)
             DrillPanel.SetActive(false);
@@ -264,7 +277,7 @@ public class DoAction : MonoBehaviour {
     {
         PCB.GetComponent<Interaction>().enabled = false;
 
-        PCB.transform.position = new Vector3(-15.714f, 2.681f, 15.524f);
+        PCB.transform.position = new Vector3(PCB.transform.position.x + 2, PCB.transform.position.y, PCB.transform.position.z);
         PCB.transform.Rotate(180, 0, 0);
 
         PCBOn = true; 
@@ -288,7 +301,11 @@ public class DoAction : MonoBehaviour {
             {
                 audioSource.PlayOneShot(WaterSFX);
 
-                MaterialAfterWash.SetActive(true);
+                if(MaterialAfterWash)
+                    MaterialAfterWash.SetActive(true);
+
+                if(newMaterial)
+                    Shablona.transform.GetChild(1).GetComponent<Renderer>().material = newMaterial;
 
                 GameManager.gm.TimerRun(5.0f); 
             }
@@ -394,6 +411,13 @@ public class DoAction : MonoBehaviour {
                 yield return new WaitForSeconds(0.05f);
             }
         }
+    }
+
+    IEnumerator Smoke()
+    {
+        yield return new WaitForSeconds(10.0f);
+
+        Instantiate(SmokeEffect, new Vector3(-8.3f, 2.7f, -1.36f), Quaternion.Euler(-90.0f, 0.0f, 0.0f));
     }
 
     IEnumerator ZoomIn()

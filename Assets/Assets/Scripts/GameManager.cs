@@ -8,9 +8,17 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager gm;
 
-    public GameObject ErrorButton; 
+    public GameObject ErrorButton;
+    public GameObject RestartButton; 
     public GameObject UIGamePaused;
     public GameObject TimerObject;
+    public GameObject IronDmg;
+    public GameObject AcidDmg;
+
+    public GameObject[] gameobjectsToReset;
+
+    public Material IronDmgMat;
+    public Material AcidDmgMat; 
 
     public Material newPcbMaterial;
     public Material newPcbeMaterial;
@@ -25,6 +33,9 @@ public class GameManager : MonoBehaviour {
 
     private GameObject _player;
     private Timer _timer;
+
+    private bool isIron = false;
+    private bool isAcid = false;
 
     private void Awake()
     {
@@ -71,12 +82,21 @@ public class GameManager : MonoBehaviour {
 
     // Timer helper Functions 
 
-    public void TimerRun(float time = 10.0f)
+    public void TimerRun(float time = 10.0f, GameObject obj = null)
     {
         TimerObject.SetActive(true);
 
         _timer.TimeAmt = time;
         _timer.isRunning = true; 
+
+        if(obj)
+        {
+            if (obj.tag == "Iron")
+                isIron = true;
+
+            else if (obj.tag == "PCB")
+                isAcid = true;
+        }
     }
 
     public void TimerReset()
@@ -116,7 +136,23 @@ public class GameManager : MonoBehaviour {
 
     public void DamagePCB()
     {
-        // implementation
+        for (int i = 0; i < gameobjectsToReset.Length; i++)
+        {
+            if (gameobjectsToReset[i])
+            {
+                gameobjectsToReset[i].GetComponent<Interaction>().enabled = true;
+            }
+        }
+
+        if(isAcid)
+        {
+            AcidDmg.transform.GetChild(1).GetComponent<Renderer>().material = AcidDmgMat; 
+        }
+
+        if(isIron)
+        {
+            IronDmg.transform.GetChild(1).GetComponent<Renderer>().material = IronDmgMat; 
+        }
     }
 
     public void ResetObject(GameObject gameObject)
@@ -131,9 +167,10 @@ public class GameManager : MonoBehaviour {
 
         if (gameObject.tag == "PCBE")
         {
-            gameObject.GetComponent<Renderer>().material = newPcbeMaterial;
+            gameObject.transform.GetChild(1).GetComponent<Renderer>().material = newPcbeMaterial;
         }
     }
+
     // Pause menu UI 
 
     public void RestartScene()
@@ -198,6 +235,15 @@ public class GameManager : MonoBehaviour {
             ErrorButton.SetActive(false);
             ShowErrorMessage("PCB was damaged, Restart the procedure");
             DamagePCB();
+
+            StartCoroutine("ShowRestartButton");
         }
+    }
+
+    IEnumerator ShowRestartButton()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        RestartButton.SetActive(true); 
     }
 }
