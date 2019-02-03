@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour {
     public FirstPersonController FPSController;
 
     public bool enableDrill  = false;
-    public bool enableSolder = false; 
+    public bool enableSolder = false;
+    public bool isRotated = false; 
 
     private GameObject _player;
     private Timer _timer;
@@ -56,11 +57,13 @@ public class GameManager : MonoBehaviour {
             {
                 UIGamePaused.SetActive(true);
                 Time.timeScale = 0f;
-                FPSController.GetComponent<FirstPersonController>().enabled = false;
+                if(FPSController)
+                    FPSController.GetComponent<FirstPersonController>().enabled = false;
             }
             else
             {
-                FPSController.GetComponent<FirstPersonController>().enabled = true;
+                if(FPSController)
+                    FPSController.GetComponent<FirstPersonController>().enabled = true;
                 Time.timeScale = 1f;
                 UIGamePaused.SetActive(false);
             }
@@ -87,6 +90,9 @@ public class GameManager : MonoBehaviour {
         TimerObject.SetActive(true);
 
         _timer.TimeAmt = time;
+
+        _timer.Reset();
+
         _timer.isRunning = true; 
 
         if(obj)
@@ -123,10 +129,10 @@ public class GameManager : MonoBehaviour {
 
     // Error 
     
-    public void ShowErrorMessage(string Message)
+    public void ShowErrorMessage(string Message, float time = 3.0f)
     {
         ErrorText.text = Message; 
-        StartCoroutine("ShowMessage");
+        StartCoroutine("ShowMessage", time);
     }
 
     public void ShowErrorButton()
@@ -160,6 +166,8 @@ public class GameManager : MonoBehaviour {
         if (gameObject.GetComponent<Interaction>()) 
             gameObject.GetComponent<Interaction>().enabled = true;
 
+        ErrorButton.GetComponent<Image>().color = Color.white;
+
         if (gameObject.tag == "PCB")
         {
             gameObject.transform.GetChild(1).GetComponent<Renderer>().material = newPcbMaterial;
@@ -171,11 +179,34 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void Rotate(GameObject obj)
+    {
+        obj.GetComponent<Interaction>().enabled = false;
+
+        if (!isRotated)
+        {
+            obj.transform.Rotate(180, 0, 0); 
+        }
+
+        else if(isRotated)
+        {
+            obj.transform.Rotate(-180, 0, 0);
+        }
+
+      //  obj.GetComponent<Interaction>().enabled = true;
+
+        isRotated = !isRotated;
+    }
     // Pause menu UI 
 
     public void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Load(int index)
+    {
+        SceneManager.LoadScene(index);
     }
 
     public void Exit()
@@ -213,10 +244,10 @@ public class GameManager : MonoBehaviour {
 
     // coroutines 
 
-    IEnumerator ShowMessage()
+    IEnumerator ShowMessage(float time)
     {
         ErrorText.enabled = true;
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(time);
         ErrorText.enabled = false; 
     }
 
@@ -235,6 +266,8 @@ public class GameManager : MonoBehaviour {
             ErrorButton.SetActive(false);
             ShowErrorMessage("PCB was damaged, Restart the procedure");
             DamagePCB();
+
+            ErrorButton.GetComponent<Image>().color = Color.white; 
 
             StartCoroutine("ShowRestartButton");
         }

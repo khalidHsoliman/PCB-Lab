@@ -20,8 +20,12 @@ public class DoAction : MonoBehaviour {
     public GameObject MaterialAfterWash;
     public GameObject Layout;
     public GameObject Shablona;
-    public GameObject SmokeEffect; 
+    public GameObject SmokeEffect;
 
+    public GameObject[] Leds;
+    public GameObject[] Chips;
+    private int LedsIndex  = 0;
+    private int ChipsIndex = 0;
 
     public FirstPersonController FirstPersonController; 
 
@@ -137,6 +141,9 @@ public class DoAction : MonoBehaviour {
 
         else if (gameObject.tag == "Ink")
             PrintPCB();
+
+        else if (gameObject.tag == "Led" || gameObject.tag == "Chip")
+            ShowComponent(gameObject); 
     }
 
     // functions to be called inside the doAction to explicitly define that action or called by UI 
@@ -277,7 +284,7 @@ public class DoAction : MonoBehaviour {
     {
         PCB.GetComponent<Interaction>().enabled = false;
 
-        PCB.transform.position = new Vector3(PCB.transform.position.x + 2, PCB.transform.position.y, PCB.transform.position.z);
+        PCB.transform.position = new Vector3(PCB.transform.position.x + 1.75f, PCB.transform.position.y, PCB.transform.position.z);
         PCB.transform.Rotate(180, 0, 0);
 
         PCBOn = true; 
@@ -293,7 +300,10 @@ public class DoAction : MonoBehaviour {
             Shablona.transform.position = MoveShablonaTo.transform.position;
             Shablona.transform.rotation = MoveShablonaTo.transform.rotation;
         }
-            //new Vector3(-16.27f, 2.78f, 16.31f);
+        //new Vector3(-16.27f, 2.78f, 16.31f);
+
+        if (Layout)
+            Layout.SetActive(true); 
         
         if(audioSource)
         {
@@ -301,11 +311,7 @@ public class DoAction : MonoBehaviour {
             {
                 audioSource.PlayOneShot(WaterSFX);
 
-                if(MaterialAfterWash)
-                    MaterialAfterWash.SetActive(true);
-
-                if(newMaterial)
-                    Shablona.transform.GetChild(1).GetComponent<Renderer>().material = newMaterial;
+                StartCoroutine("Wash");
 
                 GameManager.gm.TimerRun(5.0f); 
             }
@@ -341,6 +347,29 @@ public class DoAction : MonoBehaviour {
             Shablona.GetComponent<Interaction>().enabled = true; 
     }
 
+    private void ShowComponent(GameObject obj)
+    {
+        if(obj.tag == "Led")
+        {
+            if (!(LedsIndex >= Leds.Length))
+            {
+                Leds[LedsIndex].SetActive(true);
+                LedsIndex++;
+            }
+        }
+
+        else if(obj.tag == "Chip")
+        {
+            if (!(ChipsIndex >= Chips.Length))
+            {
+                Chips[ChipsIndex].SetActive(true);
+                ChipsIndex++; 
+            }
+        }
+
+        obj.SetActive(false);
+    }
+
     public void turnLightOn()
     {
         myLight = gameObject.GetComponentInChildren<Light>();
@@ -349,6 +378,7 @@ public class DoAction : MonoBehaviour {
 
         if (PCBOn)
         {
+            GameManager.gm.ShowErrorMessage("You should do this process in a dark place!"); 
             GameManager.gm.TimerRun(8.0f);
         }
 
@@ -440,6 +470,10 @@ public class DoAction : MonoBehaviour {
 
     IEnumerator Spraying()
     {
+        GameManager.gm.ShowErrorMessage("You should spary the Light Sensetive Material in a dark place!", 2.0f);
+
+        yield return new WaitForSeconds(2.0f); 
+
         Spray.transform.position = MoveSprayTo.transform.position;
         Spray.transform.rotation = MoveSprayTo.transform.rotation; 
 
@@ -482,6 +516,18 @@ public class DoAction : MonoBehaviour {
 
             yield return new WaitForSeconds(0.75f); 
         }
+
+    }
+
+    IEnumerator Wash()
+    {
+        yield return new WaitForSeconds(5.0f);
+
+        if (MaterialAfterWash)
+            MaterialAfterWash.SetActive(true);
+
+        if (newMaterial)
+            Shablona.transform.GetChild(1).GetComponent<Renderer>().material = newMaterial;
 
     }
 }

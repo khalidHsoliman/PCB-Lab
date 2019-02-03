@@ -20,6 +20,9 @@ TagManager:
   - Bucket
   - Duct
   - Ink
+  - Led
+  - Chip
+  - Layout
   layers:
   - Default
   - TransparentFX

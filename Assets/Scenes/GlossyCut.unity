@@ -1456,11 +1456,10 @@ RectTransform:
   - {fileID: 657667802}
   - {fileID: 927564449}
   - {fileID: 1596764676}
+  - {fileID: 1219024152}
+  - {fileID: 203583917}
   - {fileID: 411152456}
   - {fileID: 2107950493}
-  - {fileID: 1219024152}
-  - {fileID: 1148365810}
-  - {fileID: 203583917}
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1499,7 +1498,7 @@ RectTransform:
   m_Children:
   - {fileID: 222475652}
   m_Father: {fileID: 194569543}
-  m_RootOrder: 12
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -2731,7 +2730,7 @@ RectTransform:
   - {fileID: 1299844626}
   - {fileID: 1314705230}
   m_Father: {fileID: 194569543}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3313,7 +3312,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Credits
+  m_Text: Main Menu
 --- !u!222 &478548822
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6502,16 +6501,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1124051515}
---- !u!1 &1148365809 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1394182141033396, guid: 4587929805fa08244b4d0d0e5e8053b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1902930924}
---- !u!224 &1148365810 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-    type: 2}
-  m_PrefabInternal: {fileID: 1902930924}
 --- !u!1 &1148376792 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1657715023231434, guid: d1c2528185aca86488d97ec6c044b490,
@@ -6674,7 +6663,7 @@ RectTransform:
   - {fileID: 160557806}
   - {fileID: 1359429953}
   m_Father: {fileID: 194569543}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6855,7 +6844,7 @@ GameObject:
   - component: {fileID: 1299844628}
   - component: {fileID: 1299844627}
   m_Layer: 5
-  m_Name: Credits
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6919,9 +6908,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1148365809}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 339141044}
+        m_MethodName: Load
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8310,7 +8299,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter PCB Height...
+  m_Text: Enter PCB Length...
 --- !u!222 &1464676409
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10846,126 +10835,6 @@ MonoBehaviour:
   waitTime: 0.05
   offset: 0.5
   isClicked: 0
---- !u!1001 &1902930924
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 194569543}
-    m_Modifications:
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224943763854842206, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114598723099139486, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 411152455}
-    - target: {fileID: 114259412602595952, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_Text
-      value: "Visual Labs Project\n\nsupervised by \nEng. Reda Sayed\n\ncreated for
-        \nFaculty of Engineering MU\n\ncreated by \nKhalid Hassan\n"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1394182141033396, guid: 4587929805fa08244b4d0d0e5e8053b5, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224160058055846100, guid: 4587929805fa08244b4d0d0e5e8053b5,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 300
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 4587929805fa08244b4d0d0e5e8053b5, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &1923839298
 Prefab:
   m_ObjectHideFlags: 0
@@ -11369,7 +11238,7 @@ Prefab:
     - target: {fileID: 224424077406285658, guid: a33295f2819733442b37af53afb5af43,
         type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 224424077406285658, guid: a33295f2819733442b37af53afb5af43,
         type: 2}
@@ -12713,7 +12582,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '* Width and Height should be between 100 and 0. '
+  m_Text: '* Width and Length should be between 100 and 0. '
 --- !u!222 &2145482270
 CanvasRenderer:
   m_ObjectHideFlags: 0
