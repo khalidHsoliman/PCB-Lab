@@ -236,9 +236,6 @@ public class GameManager : MonoBehaviour {
 
         if (_player == null)
             _player = GameObject.FindGameObjectWithTag("Player");
-
-        if (_player == null)
-            Debug.LogError("Player not found in Game Manager");
     }
 
 

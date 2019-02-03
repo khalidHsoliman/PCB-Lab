@@ -10160,12 +10160,12 @@ Prefab:
     - target: {fileID: 65339391762043646, guid: eb6ee99441494a94f97c951b4801cb67,
         type: 2}
       propertyPath: m_Size.z
-      value: 1.2835975
+      value: 1.3687466
       objectReference: {fileID: 0}
     - target: {fileID: 65339391762043646, guid: eb6ee99441494a94f97c951b4801cb67,
         type: 2}
       propertyPath: m_Center.z
-      value: -1.2332011
+      value: -1.1906266
       objectReference: {fileID: 0}
     - target: {fileID: 65339391762043646, guid: eb6ee99441494a94f97c951b4801cb67,
         type: 2}
@@ -10309,6 +10309,36 @@ Prefab:
     - target: {fileID: 4734870983418494, guid: eb6ee99441494a94f97c951b4801cb67, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 65513475000569934, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 1.3810159
+      objectReference: {fileID: 0}
+    - target: {fileID: 65513475000569934, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Center.z
+      value: -1.1844921
+      objectReference: {fileID: 0}
+    - target: {fileID: 65513475000569934, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Center.x
+      value: -0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 65556660022989694, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Size.z
+      value: 1.352634
+      objectReference: {fileID: 0}
+    - target: {fileID: 65556660022989694, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Center.z
+      value: -1.198683
+      objectReference: {fileID: 0}
+    - target: {fileID: 65556660022989694, guid: eb6ee99441494a94f97c951b4801cb67,
+        type: 2}
+      propertyPath: m_Center.x
+      value: -0.49999997
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb6ee99441494a94f97c951b4801cb67, type: 2}

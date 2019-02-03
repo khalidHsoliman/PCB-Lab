@@ -204,7 +204,7 @@ public class DoAction : MonoBehaviour {
 
     private void ChangeWaterColor()
     {
-        Water.GetComponent<Renderer>().material.SetColor("_TintColor", new Color32(34, 62, 34, 255));
+        Water.GetComponent<Renderer>().material.SetColor("_TintColor", new Color32(97, 31, 2, 255));
 
         acidOn = true; 
     }
@@ -343,8 +343,7 @@ public class DoAction : MonoBehaviour {
     {
         Layout.SetActive(true);
 
-        if (Shablona)
-            Shablona.GetComponent<Interaction>().enabled = true; 
+        StartCoroutine("Wait"); 
     }
 
     private void ShowComponent(GameObject obj)
@@ -529,5 +528,14 @@ public class DoAction : MonoBehaviour {
         if (newMaterial)
             Shablona.transform.GetChild(1).GetComponent<Renderer>().material = newMaterial;
 
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+
+        if (Shablona)
+            Shablona.GetComponent<Interaction>().enabled = true;
     }
 }
